@@ -1,4 +1,3 @@
-TODO: desktop file
 Summary:	SMB Share Browser
 Summary(pl):	Przegl±darka zasobów SMB
 Name:		smb4k
@@ -6,10 +5,9 @@ Version:	0.3.2
 Release:	0.1
 License:	GPL
 Group:		X11/Applications/Networking
-URL:		http://smb4k.berlios.de/
 Source0:	http://download.berlios.de/smb4k/%{name}-%{version}.tar.gz
 # Source0-md5:	081e345032171389d409f66412515e7c
-BuildRequires:	autoconf
+URL:		http://smb4k.berlios.de/
 BuildRequires:	automake
 BuildRequires:	kdelibs-devel >= 3.1.0
 BuildRequires:	qt-devel >= 3.1.1
@@ -33,22 +31,26 @@ cp -f /usr/share/automake/config.sub admin
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
 
-#install -D $RPM_BUILD_ROOT%{_datadir}/applnapplications
-#mv %{buildroot}%{_datadir}/applnk/Applications/%{name}.desktop %{buildroot}%{_datadir}/applications
-#rm -rf %{buildroot}%{_datadir}/applnk
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	kde_htmldir=%{_kdedocdir}
+
+install -d $RPM_BUILD_ROOT%{_desktopdir}
+mv -f $RPM_BUILD_ROOT%{_datadir}/applnk/Applications/%{name}.desktop \
+	$RPM_BUILD_ROOT%{_desktopdir}
+%{__perl} -pi -e 's/ü/Ã¼/' $RPM_BUILD_ROOT%{_desktopdir}/%{name}.desktop
+echo 'Categories=Qt;KDE;Network;' >> $RPM_BUILD_ROOT%{_desktopdir}/%{name}.desktop
+
+%find_lang %{name} --with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS BUGS ChangeLog COPYING README TODO
+%doc AUTHORS BUGS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/smb4k
-#%{_datadir}/applications/smb4k.desktop
-%{_datadir}/apps/smb4k/smb4kui.rc
-%{_datadir}/doc/*
-%{_datadir}/icons/crystalsvg/*
-%{_datadir}/locale/*
+%{_datadir}/apps/smb4k
+%{_iconsdir}/crystalsvg/*/apps/*.png
+%{_desktopdir}/*.desktop
