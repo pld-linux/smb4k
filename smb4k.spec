@@ -1,3 +1,4 @@
+TODO: desktop file
 Summary:	SMB Share Browser
 Summary(pl):	Przegl±darka zasobów SMB
 Name:		smb4k
@@ -8,6 +9,8 @@ Group:		X11/Applications/Networking
 URL:		http://smb4k.berlios.de/
 Source0:	http://download.berlios.de/smb4k/%{name}-%{version}.tar.gz
 # Source0-md5:	081e345032171389d409f66412515e7c
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	kdelibs-devel >= 3.1.0
 BuildRequires:	qt-devel >= 3.1.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -22,7 +25,9 @@ Przegl±darka zasobów SMB dla KDE.
 %setup -q
 
 %build
-%configure
+cp -f /usr/share/automake/config.sub admin
+%configure \
+	--with-qt-libraries=%{_libdir}
 
 %{__make}
 
@@ -42,7 +47,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS BUGS ChangeLog COPYING README TODO
 %attr(755,root,root) %{_bindir}/smb4k
-%{_datadir}/applications/smb4k.desktop
+#%{_datadir}/applications/smb4k.desktop
 %{_datadir}/apps/smb4k/smb4kui.rc
 %{_datadir}/doc/*
 %{_datadir}/icons/crystalsvg/*
