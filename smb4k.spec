@@ -7,6 +7,7 @@ License:	GPL
 Group:		X11/Applications/Networking
 URL:		http://smb4k.berlios.de/
 Source0:	http://download.berlios.de/smb4k/%{name}-%{version}.tar.gz
+# Source0-md5:	081e345032171389d409f66412515e7c
 BuildRequires:	kdelibs-devel >= 3.1.0
 BuildRequires:	qt-devel >= 3.1.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
