@@ -1,16 +1,21 @@
+#
+#Note: smb4k needs suid root on smbmnt and smbumount
+#
 Summary:	SMB Share Browser
 Summary(pl):	Przegl±darka zasobów SMB
 Name:		smb4k
-Version:	0.3.2
+Version:	0.4.1a
 Release:	0.1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://download.berlios.de/smb4k/%{name}-%{version}.tar.gz
-# Source0-md5:	081e345032171389d409f66412515e7c
+# Source0-md5:	c00d6bcf68d05aa1cb6f8451798a5d5b
+# Source0-size:	878809
 URL:		http://smb4k.berlios.de/
 BuildRequires:	automake
 BuildRequires:	kdelibs-devel >= 3.1.0
 BuildRequires:	qt-devel >= 3.1.1
+Requires:	samba-client
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -37,9 +42,9 @@ rm -rf $RPM_BUILD_ROOT
 	kde_htmldir=%{_kdedocdir}
 
 install -d $RPM_BUILD_ROOT%{_desktopdir}
-mv -f $RPM_BUILD_ROOT%{_datadir}/applnk/Applications/%{name}.desktop \
-	$RPM_BUILD_ROOT%{_desktopdir}
-%{__perl} -pi -e 's/ü/Ã¼/' $RPM_BUILD_ROOT%{_desktopdir}/%{name}.desktop
+
+%{__perl} -pi -e 's/ü/Ã¼/' $RPM_BUILD_ROOT%{_desktopdir}/kde/%{name}.desktop
+mv -f $RPM_BUILD_ROOT%{_desktopdir}/kde/%{name}.desktop $RPM_BUILD_ROOT%{_desktopdir}
 echo 'Categories=Qt;KDE;Network;' >> $RPM_BUILD_ROOT%{_desktopdir}/%{name}.desktop
 
 %find_lang %{name} --with-kde
@@ -53,4 +58,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/smb4k
 %{_datadir}/apps/smb4k
 %{_iconsdir}/crystalsvg/*/apps/*.png
-%{_desktopdir}/*.desktop
+%{_desktopdir}/%{name}.desktop
