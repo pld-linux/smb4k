@@ -1,6 +1,3 @@
-#
-#Note: smb4k needs suid root on smbmnt and smbumount
-#
 Summary:	SMB Share Browser
 Summary(pl):	Przegl±darka zasobów SMB
 Name:		smb4k
@@ -50,6 +47,10 @@ echo 'Categories=Qt;KDE;Network;' >> $RPM_BUILD_ROOT%{_desktopdir}/%{name}.deskt
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+chmod +s /usr/bin/smbmnt
+chmod +s /usr/bin/smbumount
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
