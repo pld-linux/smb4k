@@ -14,6 +14,7 @@ URL:		http://smb4k.berlios.de/
 BuildRequires:	automake
 BuildRequires:	kdelibs-devel >= 3.1.0
 BuildRequires:	qt-devel >= 3.1.1
+BuildRequires:	rpmbuild(macros) >= 1.129
 Requires:	samba-client
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
