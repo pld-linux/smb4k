@@ -4,17 +4,19 @@
 Summary:	SMB Share Browser
 Summary(pl):	Przegl±darka zasobów SMB
 Name:		smb4k
-Version:	0.5.2
-Release:	1
+Version:	0.6.1
+Release:	0.9
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://download.berlios.de/smb4k/%{name}-%{version}.tar.gz
-# Source0-md5:	b308f1d14b65340dd01fb52b7e661efe
+# Source0-md5:	91bde946382a9e9e2b521ae7e0b8587d
 URL:		http://smb4k.berlios.de/
 BuildRequires:	automake
+BuildRequires:	kdebase-devel
 BuildRequires:	kdelibs-devel >= 3.1.0
 BuildRequires:	qt-devel >= 3.1.1
 BuildRequires:	rpmbuild(macros) >= 1.129
+Requires:	cups-backend-smb
 Requires:	samba-client
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -52,6 +54,9 @@ echo 'Categories=Qt;KDE;Network;' >> $RPM_BUILD_ROOT%{_desktopdir}/%{name}.deskt
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
+
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS BUGS ChangeLog README TODO
@@ -59,6 +64,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/smb4k_kill
 %attr(755,root,root) %{_bindir}/smb4k_mount
 %attr(755,root,root) %{_bindir}/smb4k_umount
+%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%attr(755,root,root) %{_libdir}/kde3/*.so
+%{_libdir}/kde3/*.la
 %{_datadir}/apps/smb4k
 %{_iconsdir}/crystalsvg/*/apps/*.png
 %{_desktopdir}/%{name}.desktop
