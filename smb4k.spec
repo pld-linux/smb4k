@@ -4,12 +4,12 @@
 Summary:	SMB Share Browser
 Summary(pl):	Przegl±darka zasobów SMB
 Name:		smb4k
-Version:	0.6.1
-Release:	0.9
+Version:	0.6.3
+Release:	1.0
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://download.berlios.de/smb4k/%{name}-%{version}.tar.gz
-# Source0-md5:	91bde946382a9e9e2b521ae7e0b8587d
+# Source0-md5:	8cac939f2efc50e9b128633db4d69847
 URL:		http://smb4k.berlios.de/
 BuildRequires:	automake
 BuildRequires:	kdebase-devel
@@ -68,5 +68,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/*.so
 %{_libdir}/kde3/*.la
 %{_datadir}/apps/smb4k
+%{_datadir}/apps/konqsidebartng/add/smb4k_add.desktop
 %{_iconsdir}/crystalsvg/*/apps/*.png
 %{_desktopdir}/%{name}.desktop
