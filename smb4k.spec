@@ -54,6 +54,8 @@ echo 'Categories=Qt;KDE;Network;' >> $RPM_BUILD_ROOT%{_desktopdir}/%{name}.deskt
 
 %find_lang %{name} --with-kde
 
+rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -71,7 +73,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/*.so
 # *.la are required
 %{_libdir}/kde3/*.la
-%{_libdir}/*.la
 %{_datadir}/apps/smb4k
 %{_datadir}/apps/konqsidebartng/add/smb4k_add.desktop
 %{_iconsdir}/crystalsvg/*/apps/*.png
