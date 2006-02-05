@@ -1,0 +1,34 @@
+--- smb4k-0.6.6/smb4k/core/Makefile.am.orig	2006-02-05 13:14:02.000000000 +0100
++++ smb4k-0.6.6/smb4k/core/Makefile.am	2006-02-05 13:14:39.000000000 +0100
+@@ -1,9 +1,5 @@
+ lib_LTLIBRARIES = libsmb4kcore.la
+ libsmb4kcore_la_LDFLAGS = -no-undefined $(all_libraries) -lkwalletclient
+-include_HEADERS = smb4kglobal.h smb4kauthinfo.h smb4kbookmark.h \
+-	smb4kbookmarkhandler.h smb4kcore.h smb4kdefs.h smb4kfileio.h smb4kipfinder.h smb4kmounter.h \
+-	smb4knetworkitems.h smb4kpasswordhandler.h smb4kprint.h smb4kprintinfo.h smb4kscanner.h \
+-	smb4kshare.h smb4kshellio.h smb4kuser.h
+ libsmb4kcore_la_SOURCES = smb4kauthinfo.cpp smb4kbookmark.cpp \
+ 	smb4kbookmarkhandler.cpp smb4kcore.cpp smb4kfileio.cpp smb4kipfinder.cpp smb4kmounter.cpp \
+ 	smb4knetworkitems.cpp smb4kpasswordhandler.cpp smb4kprint.cpp smb4kprintinfo.cpp \
+--- smb4k-0.6.6/smb4k/widgets/Makefile.am.orig	2006-02-05 13:20:24.000000000 +0100
++++ smb4k-0.6.6/smb4k/widgets/Makefile.am	2006-02-05 13:21:41.000000000 +0100
+@@ -6,14 +6,13 @@
+ 	smb4koptionsdlg.cpp smb4kpreviewdialog.cpp smb4kprintdialog.cpp smb4ksambaoptions.cpp \
+ 	smb4ksearchtab.cpp smb4kshareoptions.cpp smb4ksharetab.cpp smb4ksharewidget.cpp \
+ 	smb4ksuperuseroptions.cpp smb4ksharesmenuwidget.cpp
+-include_HEADERS = smb4kappearanceoptions.h smb4kauthoptions.h \
+-	smb4kbookmarkeditor.h smb4kbookmarkmenuwidget.h smb4kbrowserwidget.h smb4kbrowserwidgetitem.h \
+-	smb4kmountdialog.h smb4knetworkoptions.h smb4knetworktab.h smb4koptionsdlg.h \
+-	smb4kpreviewdialog.h smb4kprintdialog.h smb4ksambaoptions.h smb4ksearchtab.h \
+-	smb4kshareoptions.h smb4ksharetab.h smb4ksharewidget.h smb4ksuperuseroptions.h
+ INCLUDES = $(all_includes)
+ METASOURCES = AUTO
+ libsmb4kwidgets_la_LIBADD = $(top_builddir)/smb4k/core/libsmb4kcore.la\
+ 	$(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
+ libsmb4kwidgets_la_LDFLAGS = -no-undefined $(all_libraries)
+-noinst_HEADERS = smb4ksharesmenuwidget.h
++noinst_HEADERS = smb4ksharesmenuwidget.h smb4kappearanceoptions.h smb4kauthoptions.h \
++	smb4kbookmarkeditor.h smb4kbookmarkmenuwidget.h smb4kbrowserwidget.h smb4kbrowserwidgetitem.h \
++	smb4kmountdialog.h smb4knetworkoptions.h smb4knetworktab.h smb4koptionsdlg.h \
++	smb4kpreviewdialog.h smb4kprintdialog.h smb4ksambaoptions.h smb4ksearchtab.h \
++	smb4kshareoptions.h smb4ksharetab.h smb4ksharewidget.h smb4ksuperuseroptions.h
