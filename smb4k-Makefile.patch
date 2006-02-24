@@ -1,5 +1,5 @@
---- smb4k-0.6.6/smb4k/core/Makefile.am.orig	2006-02-05 13:14:02.000000000 +0100
-+++ smb4k-0.6.6/smb4k/core/Makefile.am	2006-02-05 13:14:39.000000000 +0100
+--- smb4k-0.6.8/smb4k/core/Makefile.am.orig	2006-02-05 13:14:02.000000000 +0100
++++ smb4k-0.6.8/smb4k/core/Makefile.am	2006-02-05 13:14:39.000000000 +0100
 @@ -1,9 +1,5 @@
  lib_LTLIBRARIES = libsmb4kcore.la
  libsmb4kcore_la_LDFLAGS = -no-undefined $(all_libraries) -lkwalletclient
@@ -10,8 +10,8 @@
  libsmb4kcore_la_SOURCES = smb4kauthinfo.cpp smb4kbookmark.cpp \
  	smb4kbookmarkhandler.cpp smb4kcore.cpp smb4kfileio.cpp smb4kipfinder.cpp smb4kmounter.cpp \
  	smb4knetworkitems.cpp smb4kpasswordhandler.cpp smb4kprint.cpp smb4kprintinfo.cpp \
---- smb4k-0.6.6/smb4k/widgets/Makefile.am.orig	2006-02-05 13:20:24.000000000 +0100
-+++ smb4k-0.6.6/smb4k/widgets/Makefile.am	2006-02-05 13:21:41.000000000 +0100
+--- smb4k-0.6.8/smb4k/widgets/Makefile.am.orig	2006-02-05 13:20:24.000000000 +0100
++++ smb4k-0.6.8/smb4k/widgets/Makefile.am	2006-02-05 13:21:41.000000000 +0100
 @@ -6,14 +6,13 @@
  	smb4koptionsdlg.cpp smb4kpreviewdialog.cpp smb4kprintdialog.cpp smb4ksambaoptions.cpp \
  	smb4ksearchtab.cpp smb4kshareoptions.cpp smb4ksharetab.cpp smb4ksharewidget.cpp \
