@@ -12,6 +12,7 @@ Source0:	http://download.berlios.de/smb4k/%{name}-%{version}.tar.gz
 # Source0-md5:	675add7e36699c392cf1c2067abebf68
 URL:		http://smb4k.berlios.de/
 Patch0:		%{name}-Makefile.patch
+Patch1:		%{name}-startup.patch
 BuildRequires:	automake
 BuildRequires:	kdebase-devel >= 9:3.1.0
 BuildRequires:	qt-devel >= 3.1.1
@@ -29,6 +30,7 @@ Przegl±darka zasobów SMB dla KDE.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 cp -f /usr/share/automake/config.* admin
