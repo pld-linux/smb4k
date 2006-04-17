@@ -1,15 +1,16 @@
 #
 #Note: smb4k needs suid root on smbmnt and smbumount
 #
-Summary:	SMB Share Browser
+Summary:	SMB share browser
 Summary(pl):	Przegl±darka zasobów SMB
 Name:		smb4k
 Version:	0.6.4
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://download.berlios.de/smb4k/%{name}-%{version}.tar.gz
 # Source0-md5:	aa78c388fa4aace1dce5450b9fefffc4
+Patch0:		%{name}-desktop.patch
 URL:		http://smb4k.berlios.de/
 BuildRequires:	automake
 BuildRequires:	kdebase-devel
@@ -28,6 +29,7 @@ Przegl±darka zasobów SMB dla KDE.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 cp -f /usr/share/automake/config.sub admin
@@ -44,10 +46,6 @@ rm -rf $RPM_BUILD_ROOT
 	kde_htmldir=%{_kdedocdir}
 
 install -d $RPM_BUILD_ROOT%{_desktopdir}
-
-%{__perl} -pi -e 's/ü/Ã¼/' $RPM_BUILD_ROOT%{_desktopdir}/kde/%{name}.desktop
-mv -f $RPM_BUILD_ROOT%{_desktopdir}/kde/%{name}.desktop $RPM_BUILD_ROOT%{_desktopdir}
-echo 'Categories=Qt;KDE;Network;' >> $RPM_BUILD_ROOT%{_desktopdir}/%{name}.desktop
 
 %find_lang %{name} --with-kde
 
@@ -70,4 +68,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/smb4k
 %{_datadir}/apps/konqsidebartng/add/smb4k_add.desktop
 %{_iconsdir}/crystalsvg/*/apps/*.png
-%{_desktopdir}/%{name}.desktop
+%{_desktopdir}/kde/%{name}.desktop
