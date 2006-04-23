@@ -4,12 +4,12 @@
 Summary:	SMB share browser
 Summary(pl):	Przegl±darka zasobów SMB
 Name:		smb4k
-Version:	0.6.9
+Version:	0.7.0
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
-Source0:	http://download.berlios.de/smb4k/%{name}-%{version}.tar.gz
-# Source0-md5:	d11cb15febf8c55c04f5c96e14fced0b
+Source0:	http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
+# Source0-md5:	a221dd7f4e206799ea52d8a249d1a2b5
 URL:		http://smb4k.berlios.de/
 Patch0:		%{name}-Makefile.patch
 Patch1:		%{name}-desktop.patch
@@ -49,10 +49,6 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_desktopdir}
 
-#%{__perl} -pi -e 's/ü/Ã¼/' $RPM_BUILD_ROOT%{_desktopdir}/kde/%{name}.desktop
-#mv -f $RPM_BUILD_ROOT%{_desktopdir}/kde/%{name}.desktop $RPM_BUILD_ROOT%{_desktopdir}
-#echo 'Categories=Qt;KDE;Network;' >> $RPM_BUILD_ROOT%{_desktopdir}/%{name}.desktop
-
 %find_lang %{name} --with-kde
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
@@ -70,6 +66,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/smb4k_kill
 %attr(755,root,root) %{_bindir}/smb4k_mount
 %attr(755,root,root) %{_bindir}/smb4k_umount
+%attr(755,root,root) %{_bindir}/smb4k_cat
+%attr(755,root,root) %{_bindir}/smb4k_mv 
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 %attr(755,root,root) %{_libdir}/kde3/*.so
 # *.la are required
