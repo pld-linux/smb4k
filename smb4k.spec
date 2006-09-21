@@ -4,15 +4,15 @@
 Summary:	SMB share browser
 Summary(pl):	Przegl±darka zasobów SMB
 Name:		smb4k
-Version:	0.7.0
+Version:	0.7.2
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
-# Source0-md5:	a221dd7f4e206799ea52d8a249d1a2b5
+# Source0-md5:	d7f775da7ce15288b2e0cb977e8fb188
 URL:		http://smb4k.berlios.de/
 Patch0:		%{name}-Makefile.patch
-Patch1:		%{name}-desktop.patch
+Patch1:		kde-ac260-lt.patch
 BuildRequires:	automake
 BuildRequires:	kdebase-devel >= 9:3.1.0
 BuildRequires:	qt-devel >= 3.1.1
@@ -47,7 +47,8 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_htmldir=%{_kdedocdir}
 
-install -d $RPM_BUILD_ROOT%{_desktopdir}
+#fixing desktop file
+%{__sed} -e "s@Categories=Qt;KDE;Utility;@Categories=Qt;KDE;Network;@g" -i $RPM_BUILD_ROOT%{_desktopdir}/kde/%{name}.desktop
 
 %find_lang %{name} --with-kde
 
