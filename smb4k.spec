@@ -11,8 +11,9 @@ Group:		X11/Applications/Networking
 Source0:	http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
 # Source0-md5:	7cd1d8b0b02fb6eb982bc9f561fec1f6
 URL:		http://smb4k.berlios.de/
-Patch0:		%{name}-Makefile.patch
-Patch1:		kde-ac260-lt.patch
+Patch0:		kde-common-PLD.patch
+Patch1:		%{name}-Makefile.patch
+Patch2:		kde-ac260-lt.patch
 BuildRequires:	automake
 BuildRequires:	kdebase-devel >= 9:3.1.0
 BuildRequires:	qt-devel >= 3.1.1
@@ -31,13 +32,12 @@ Przegl±darka zasobów SMB dla KDE.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 cp -f /usr/share/automake/config.* admin
-
 %configure \
 	--with-qt-libraries=%{_libdir}
-
 %{__make}
 
 %install
