@@ -39,6 +39,10 @@ Przegl±darka zasobów SMB dla KDE.
 cp -f /usr/share/automake/config.* admin
 %{__make} -f admin/Makefile.common cvs
 %configure \
+%if "%{_lib}" == "lib64"
+	--enable-libsuffix=64 \
+%endif
+	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full} \
 	--with-qt-libraries=%{_libdir}
 %{__make}
 
