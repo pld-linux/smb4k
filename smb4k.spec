@@ -2,7 +2,7 @@
 #Note: smb4k needs suid root on smbmnt and smbumount
 #
 Summary:	SMB share browser
-Summary(pl.UTF-8):   Przeglądarka zasobów SMB
+Summary(pl.UTF-8):	Przeglądarka zasobów SMB
 Name:		smb4k
 Version:	0.8.0
 Release:	2
