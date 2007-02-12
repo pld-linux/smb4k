@@ -2,7 +2,7 @@
 #Note: smb4k needs suid root on smbmnt and smbumount
 #
 Summary:	SMB share browser
-Summary(pl):	Przegl±darka zasobów SMB
+Summary(pl.UTF-8):   PrzeglÄ…darka zasobÃ³w SMB
 Name:		smb4k
 Version:	0.8.0
 Release:	2
@@ -26,8 +26,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 An SMB share browser for KDE.
 
-%description -l pl
-Przegl±darka zasobów SMB dla KDE.
+%description -l pl.UTF-8
+PrzeglÄ…darka zasobÃ³w SMB dla KDE.
 
 %prep
 %setup -q
