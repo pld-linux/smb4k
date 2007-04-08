@@ -4,12 +4,12 @@
 Summary:	SMB share browser
 Summary(pl.UTF-8):	Przeglądarka zasobów SMB
 Name:		smb4k
-Version:	0.8.0
-Release:	2
+Version:	0.8.1
+Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
-# Source0-md5:	18540bdfffcef1b29b4b5e584bb4dbcb
+# Source0-md5:	49d7a58f751d04c6c0697ee5e5912d4d
 URL:		http://smb4k.berlios.de/
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-Makefile.patch
