@@ -16,8 +16,8 @@ Patch1:		%{name}-Makefile.patch
 Patch2:		kde-ac260-lt.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	kdebase-devel >= 9:3.1.0
-BuildRequires:	qt-devel >= 3.1.1
+BuildRequires:	kdebase-devel >= 9:3.2
+BuildRequires:	qt-devel >= 6:3.2
 BuildRequires:	rpmbuild(macros) >= 1.129
 Requires:	cups-backend-smb
 Requires:	samba-client
