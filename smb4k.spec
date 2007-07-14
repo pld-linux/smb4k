@@ -2,20 +2,22 @@
 #Note: smb4k needs suid root on smbmnt and smbumount
 #
 Summary:	SMB share browser
-Summary(pl):	Przegl±darka zasobów SMB
+Summary(pl.UTF-8):	PrzeglÄ…darka zasobÃ³w SMB
 Name:		smb4k
-Version:	0.7.2
+Version:	0.8.4
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
-# Source0-md5:	d7f775da7ce15288b2e0cb977e8fb188
+# Source0-md5:	6e13c5c0c2e548187d51bc70072055e0
 URL:		http://smb4k.berlios.de/
-Patch0:		%{name}-Makefile.patch
-Patch1:		kde-ac260-lt.patch
+Patch0:		kde-common-PLD.patch
+Patch1:		%{name}-Makefile.patch
+Patch2:		kde-ac260-lt.patch
+BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	kdebase-devel >= 9:3.1.0
-BuildRequires:	qt-devel >= 3.1.1
+BuildRequires:	kdebase-devel >= 9:3.2
+BuildRequires:	qt-devel >= 6:3.2
 BuildRequires:	rpmbuild(macros) >= 1.129
 Requires:	cups-backend-smb
 Requires:	samba-client
@@ -24,20 +26,24 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 An SMB share browser for KDE.
 
-%description -l pl
-Przegl±darka zasobów SMB dla KDE.
+%description -l pl.UTF-8
+PrzeglÄ…darka zasobÃ³w SMB dla KDE.
 
 %prep
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 cp -f /usr/share/automake/config.* admin
-
+%{__make} -f admin/Makefile.common cvs
 %configure \
+%if "%{_lib}" == "lib64"
+	--enable-libsuffix=64 \
+%endif
+	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full} \
 	--with-qt-libraries=%{_libdir}
-
 %{__make}
 
 %install
