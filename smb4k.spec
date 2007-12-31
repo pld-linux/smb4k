@@ -4,12 +4,12 @@
 Summary:	SMB share browser
 Summary(pl.UTF-8):	Przeglądarka zasobów SMB
 Name:		smb4k
-Version:	0.8.7
+Version:	0.9.1
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
-# Source0-md5:	4ea8a3ffda9f67170cbc588a03d8fe97
+# Source0-md5:	11c94a224b97262057744f198510d0fb
 URL:		http://smb4k.berlios.de/
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-Makefile.patch
@@ -74,9 +74,19 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/smb4k_mount
 %attr(755,root,root) %{_bindir}/smb4k_umount
 %attr(755,root,root) %{_bindir}/smb4k_cat
-%attr(755,root,root) %{_bindir}/smb4k_mv 
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%attr(755,root,root) %{_bindir}/smb4k_mv
+%attr(755,root,root) %{_libdir}/libsmb4kconfigdialog.so.0.0.0
+%{_libdir}/libsmb4kconfigdialog.so
+%{_libdir}/libsmb4kconfigdialog.so.0
+%attr(755,root,root) %{_libdir}/libsmb4kcore.so.2.0.0
+%{_libdir}/libsmb4kcore.so
+%{_libdir}/libsmb4kcore.so.2
 %attr(755,root,root) %{_libdir}/kde3/*.so
+%attr(755,root,root) %{_libdir}/libsmb4kdialogs.so
+%{_datadir}/apps/smb4knetworkbrowserpart
+%{_datadir}/apps/smb4ksharesiconviewpart
+%{_datadir}/apps/smb4kshareslistviewpart
+%{_datadir}/config.kcfg/smb4k.kcfg
 # *.la are required
 %{_libdir}/kde3/*.la
 %{_datadir}/apps/smb4k
