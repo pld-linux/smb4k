@@ -10,10 +10,10 @@ License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
 # Source0-md5:	11c94a224b97262057744f198510d0fb
-URL:		http://smb4k.berlios.de/
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-Makefile.patch
 Patch2:		kde-ac260-lt.patch
+URL:		http://smb4k.berlios.de/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	kdebase-devel >= 9:3.2
@@ -58,7 +58,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %find_lang %{name} --with-kde
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
+rm -f $RPM_BUILD_ROOT%{_libdir}/*.la $RPM_BUILD_ROOT%{_libdir}/lib{smb4kconfigdialog,smb4kcore}.so
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -75,21 +75,19 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/smb4k_umount
 %attr(755,root,root) %{_bindir}/smb4k_cat
 %attr(755,root,root) %{_bindir}/smb4k_mv
-%attr(755,root,root) %{_libdir}/libsmb4kconfigdialog.so.0.0.0
-%{_libdir}/libsmb4kconfigdialog.so
-%{_libdir}/libsmb4kconfigdialog.so.0
-%attr(755,root,root) %{_libdir}/libsmb4kcore.so.2.0.0
-%{_libdir}/libsmb4kcore.so
-%{_libdir}/libsmb4kcore.so.2
-%attr(755,root,root) %{_libdir}/kde3/*.so
+%attr(755,root,root) %{_libdir}/libsmb4kconfigdialog.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmb4kconfigdialog.so.0
+%attr(755,root,root) %{_libdir}/libsmb4kcore.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmb4kcore.so.2
 %attr(755,root,root) %{_libdir}/libsmb4kdialogs.so
-%{_datadir}/apps/smb4knetworkbrowserpart
-%{_datadir}/apps/smb4ksharesiconviewpart
-%{_datadir}/apps/smb4kshareslistviewpart
-%{_datadir}/config.kcfg/smb4k.kcfg
+%attr(755,root,root) %{_libdir}/kde3/*.so
 # *.la are required
 %{_libdir}/kde3/*.la
 %{_datadir}/apps/smb4k
+%{_datadir}/apps/smb4knetworkbrowserpart
+%{_datadir}/apps/smb4ksharesiconviewpart
+%{_datadir}/apps/smb4kshareslistviewpart
 %{_datadir}/apps/konqsidebartng/add/smb4k_add.desktop
+%{_datadir}/config.kcfg/smb4k.kcfg
 %{_iconsdir}/crystalsvg/*/apps/*.png
 %{_desktopdir}/kde/%{name}.desktop
