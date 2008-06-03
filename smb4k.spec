@@ -4,12 +4,12 @@
 Summary:	SMB share browser
 Summary(pl.UTF-8):	Przeglądarka zasobów SMB
 Name:		smb4k
-Version:	0.9.1
+Version:	0.9.5
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
-# Source0-md5:	11c94a224b97262057744f198510d0fb
+# Source0-md5:	fcddc095301c5d2f31b2aa883d30f3ba
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-Makefile.patch
 Patch2:		kde-ac260-lt.patch
@@ -75,8 +75,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/smb4k_umount
 %attr(755,root,root) %{_bindir}/smb4k_cat
 %attr(755,root,root) %{_bindir}/smb4k_mv
-%attr(755,root,root) %{_libdir}/libsmb4kconfigdialog.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libsmb4kconfigdialog.so.0
 %attr(755,root,root) %{_libdir}/libsmb4kcore.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libsmb4kcore.so.2
 %attr(755,root,root) %{_libdir}/libsmb4kdialogs.so
