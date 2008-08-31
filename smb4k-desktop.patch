@@ -1,0 +1,11 @@
+--- smb4k-0.6.4/smb4k/smb4k.desktop~	2006-04-17 09:24:44.000000000 +0200
++++ smb4k-0.6.4/smb4k/smb4k.desktop	2006-04-17 09:24:44.000000000 +0200
+@@ -77,5 +77,5 @@
+ Icon=smb4k
+ DocPath=smb4k/index.html
+ Type=Application
+-Terminal=0
+-Categories=Qt;KDE;Utility
+\ No newline at end of file
++Terminal=false
++Categories=Qt;KDE;Network;
