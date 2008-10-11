@@ -11,11 +11,13 @@ Group:		X11/Applications/Networking
 Source0:	http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
 # Source0-md5:	9b41d9041894abc1c8cc5c71e58d3ec2
 URL:		http://smb4k.berlios.de/
-BuildRequires:	autoconf
-BuildRequires:	automake
+BuildRequires:	QtCore-devel
+BuildRequires:	QtDBus-devel
+BuildRequires:	QtGui-devel
+BuildRequires:	QtNetwork-devel
+BuildREquires:	cmake
 BuildRequires:	kde4-kdebase-devel
-BuildRequires:	qt-devel >= 6:3.2
-BuildRequires:	rpmbuild(macros) >= 1.129
+BuildRequires:	rpmbuild(macros) >= 1.293
 Requires:	cups-backend-smb
 Requires:	samba-client
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
