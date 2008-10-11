@@ -4,19 +4,16 @@
 Summary:	SMB share browser
 Summary(pl.UTF-8):	Przeglądarka zasobów SMB
 Name:		smb4k
-Version:	0.9.7
+Version:	0.10.0
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
-# Source0-md5:	199cdef7c0c3c40290afb2401379910a
-Patch0:		kde-common-PLD.patch
-Patch1:		%{name}-Makefile.patch
-Patch2:		kde-ac260-lt.patch
+# Source0-md5:	9b41d9041894abc1c8cc5c71e58d3ec2
 URL:		http://smb4k.berlios.de/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	kdebase-devel >= 9:3.2
+BuildRequires:	kde4-kdebase-devel
 BuildRequires:	qt-devel >= 6:3.2
 BuildRequires:	rpmbuild(macros) >= 1.129
 Requires:	cups-backend-smb
@@ -31,19 +28,16 @@ Przeglądarka zasobów SMB dla KDE.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %build
-cp -f /usr/share/automake/config.* admin
-%{__make} -f admin/Makefile.common cvs
-%configure \
+%cmake \
+	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
+	-DSYSCONF_INSTALL_DIR=%{_sysconfdir} \
 %if "%{_lib}" == "lib64"
-	--enable-libsuffix=64 \
+	-DLIB_SUFFIX=64 \
 %endif
-	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full} \
-	--with-qt-libraries=%{_libdir}
+	.
+
 %{__make}
 
 %install
@@ -54,11 +48,12 @@ rm -rf $RPM_BUILD_ROOT
 	kde_htmldir=%{_kdedocdir}
 
 #fixing desktop file
-%{__sed} -e "s@Categories=Qt;KDE;Utility;@Categories=Qt;KDE;Network;@g" -i $RPM_BUILD_ROOT%{_desktopdir}/kde/%{name}.desktop
+%{__sed} -e "s@Categories=Qt;KDE;Utility;@Categories=Qt;KDE;Network;@g" -i $RPM_BUILD_ROOT%{_desktopdir}/kde4/%{name}.desktop
 
 %find_lang %{name} --with-kde
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/*.la $RPM_BUILD_ROOT%{_libdir}/lib{smb4kconfigdialog,smb4kcore}.so
+rm -rf $RPM_BUILD_ROOT%{_includedir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -73,19 +68,19 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/smb4k_kill
 %attr(755,root,root) %{_bindir}/smb4k_mount
 %attr(755,root,root) %{_bindir}/smb4k_umount
-%attr(755,root,root) %{_bindir}/smb4k_cat
-%attr(755,root,root) %{_bindir}/smb4k_mv
+%attr(755,root,root) %{_bindir}/smb4k_sudowriter
 %attr(755,root,root) %{_libdir}/libsmb4kcore.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libsmb4kcore.so.2
+%attr(755,root,root) %ghost %{_libdir}/libsmb4kcore.so.3
 %attr(755,root,root) %{_libdir}/libsmb4kdialogs.so
-%attr(755,root,root) %{_libdir}/kde3/*.so
+%attr(755,root,root) %{_libdir}/kde4/*.so
 # *.la are required
-%{_libdir}/kde3/*.la
 %{_datadir}/apps/smb4k
-%{_datadir}/apps/smb4knetworkbrowserpart
-%{_datadir}/apps/smb4ksharesiconviewpart
-%{_datadir}/apps/smb4kshareslistviewpart
-%{_datadir}/apps/konqsidebartng/add/smb4k_add.desktop
+%attr(755,root,root) %{_datadir}/apps/kconf_update/authentication1.sh
+%attr(755,root,root) %{_datadir}/apps/kconf_update/network1.sh
+%attr(755,root,root) %{_datadir}/apps/kconf_update/network2.sh
+%attr(755,root,root) %{_datadir}/apps/kconf_update/samba1.sh
+%attr(755,root,root) %{_datadir}/apps/kconf_update/smb4ksettings.upd
+%attr(755,root,root) %{_datadir}/apps/kconf_update/userinterface1.sh
 %{_datadir}/config.kcfg/smb4k.kcfg
-%{_iconsdir}/crystalsvg/*/apps/*.png
-%{_desktopdir}/kde/%{name}.desktop
+%{_iconsdir}/*/*/*/*.png
+%{_desktopdir}/kde4/%{name}.desktop
