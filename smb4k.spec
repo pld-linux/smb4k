@@ -15,8 +15,13 @@ BuildRequires:	QtCore-devel
 BuildRequires:	QtDBus-devel
 BuildRequires:	QtGui-devel
 BuildRequires:	QtNetwork-devel
-BuildREquires:	cmake
+BuildRequires:	QtSvg-devel
+BuildRequires:	automoc4
+BuildRequires:	cmake
+BuildRequires:	gettext-devel
 BuildRequires:	kde4-kdebase-devel
+BuildRequires:	qt4-build
+BuildRequires:	qt4-qmake
 BuildRequires:	rpmbuild(macros) >= 1.293
 Requires:	cups-backend-smb
 Requires:	samba-client
