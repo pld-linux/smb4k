@@ -18,8 +18,10 @@ BuildRequires:	QtNetwork-devel
 BuildRequires:	QtSvg-devel
 BuildRequires:	automoc4
 BuildRequires:	cmake
+BuildRequires:	docbook-dtd42-xml
 BuildRequires:	gettext-devel
-BuildRequires:	kde4-kdebase-devel
+BuildRequires:	kde4-kdelibs-devel
+BuildRequires:	libxml2-progs
 BuildRequires:	qt4-build
 BuildRequires:	qt4-qmake
 BuildRequires:	rpmbuild(macros) >= 1.293
