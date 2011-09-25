@@ -4,12 +4,12 @@
 Summary:	SMB share browser
 Summary(pl.UTF-8):	Przeglądarka zasobów SMB
 Name:		smb4k
-Version:	0.10.9
-Release:	1
+Version:	0.10.74
+Release:	0.1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
-# Source0-md5:	37189747c2a794e23caca8cb77ba2d59
+# Source0-md5:	7954fd0047066f79f47bc9d29c0261c3
 URL:		http://smb4k.berlios.de/
 BuildRequires:	QtCore-devel
 BuildRequires:	QtDBus-devel
@@ -59,6 +59,7 @@ rm -rf $RPM_BUILD_ROOT
 #fixing desktop file
 %{__sed} -e "s@Categories=Qt;KDE;Utility;@Categories=Qt;KDE;Network;@g" -i $RPM_BUILD_ROOT%{_desktopdir}/kde4/%{name}.desktop
 
+mv $RPM_BUILD_ROOT%{_kdedocdir}/en/doc $RPM_BUILD_ROOT%{_kdedocdir}/en/smb4k
 %find_lang %{name} --with-kde
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/*.la $RPM_BUILD_ROOT%{_libdir}/lib{smb4kconfigdialog,smb4kcore}.so
@@ -74,22 +75,17 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS BUGS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/smb4k
-%attr(755,root,root) %{_bindir}/smb4k_kill
-%attr(755,root,root) %{_bindir}/smb4k_mount
-%attr(755,root,root) %{_bindir}/smb4k_umount
-%attr(755,root,root) %{_bindir}/smb4k_sudowriter
 %attr(755,root,root) %{_libdir}/libsmb4kcore.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libsmb4kcore.so.3
-%attr(755,root,root) %{_libdir}/libsmb4kdialogs.so
+%attr(755,root,root) %ghost %{_libdir}/libsmb4kcore.so.4
+%attr(755,root,root) %{_libdir}/libsmb4ktooltips.so
 %attr(755,root,root) %{_libdir}/kde4/*.so
+%attr(755,root,root) %{_libdir}/kde4/libexec/mounthelper
 # *.la are required
+%config(noreplace) %verify(not md5 mtime size) /etc/dbus-1/system.d/de.berlios.smb4k.mounthelper.conf
+%{_datadir}/apps/kconf_update/*
+%{_datadir}/dbus-1/system-services/de.berlios.smb4k.mounthelper.service
+%{_datadir}/polkit-1/actions/de.berlios.smb4k.mounthelper.policy
 %{_datadir}/apps/smb4k
-%attr(755,root,root) %{_datadir}/apps/kconf_update/authentication1.sh
-%attr(755,root,root) %{_datadir}/apps/kconf_update/network1.sh
-%attr(755,root,root) %{_datadir}/apps/kconf_update/network2.sh
-%attr(755,root,root) %{_datadir}/apps/kconf_update/samba1.sh
-%attr(755,root,root) %{_datadir}/apps/kconf_update/smb4ksettings.upd
-%attr(755,root,root) %{_datadir}/apps/kconf_update/userinterface1.sh
 %{_datadir}/config.kcfg/smb4k.kcfg
 %{_iconsdir}/*/*/*/*.png
 %{_desktopdir}/kde4/%{name}.desktop
