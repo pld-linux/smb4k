@@ -4,13 +4,13 @@
 Summary:	SMB share browser
 Summary(pl.UTF-8):	Przeglądarka zasobów SMB
 Name:		smb4k
-Version:	0.10.74
+Version:	1.0.0
 Release:	0.1
 License:	GPL
 Group:		X11/Applications/Networking
-Source0:	http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
-# Source0-md5:	7954fd0047066f79f47bc9d29c0261c3
-URL:		http://smb4k.berlios.de/
+Source0:	http://downloads.sourceforge.net/smb4k/%{name}-%{version}.tar.bz2
+# Source0-md5:	d00b71aac63aa9c68e68e5980c07a01b
+URL:		http://smb4k.sf.net
 BuildRequires:	QtCore-devel
 BuildRequires:	QtDBus-devel
 BuildRequires:	QtGui-devel
@@ -59,7 +59,6 @@ rm -rf $RPM_BUILD_ROOT
 #fixing desktop file
 %{__sed} -e "s@Categories=Qt;KDE;Utility;@Categories=Qt;KDE;Network;@g" -i $RPM_BUILD_ROOT%{_desktopdir}/kde4/%{name}.desktop
 
-mv $RPM_BUILD_ROOT%{_kdedocdir}/en/doc $RPM_BUILD_ROOT%{_kdedocdir}/en/smb4k
 %find_lang %{name} --with-kde
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/*.la $RPM_BUILD_ROOT%{_libdir}/lib{smb4kconfigdialog,smb4kcore}.so
