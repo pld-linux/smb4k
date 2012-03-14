@@ -4,12 +4,12 @@
 Summary:	SMB share browser
 Summary(pl.UTF-8):	Przeglądarka zasobów SMB
 Name:		smb4k
-Version:	1.0.0
-Release:	0.1
+Version:	1.0.1
+Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://downloads.sourceforge.net/smb4k/%{name}-%{version}.tar.bz2
-# Source0-md5:	d00b71aac63aa9c68e68e5980c07a01b
+# Source0-md5:	c4b515e482ef7a7a834a3b660e1ee4d0
 URL:		http://smb4k.sf.net
 BuildRequires:	QtCore-devel
 BuildRequires:	QtDBus-devel
