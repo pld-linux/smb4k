@@ -19,7 +19,7 @@ BuildRequires:	QtSvg-devel
 BuildRequires:	automoc4
 BuildRequires:	cmake
 BuildRequires:	docbook-dtd42-xml
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	kde4-kdelibs-devel
 BuildRequires:	libxml2-progs
 BuildRequires:	qt4-build
