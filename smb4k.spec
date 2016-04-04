@@ -59,11 +59,7 @@ rm -rf $RPM_BUILD_ROOT
 #fixing desktop file
 %{__sed} -e "s@Categories=Qt;KDE;Utility;@Categories=Qt;KDE;Network;@g" -i $RPM_BUILD_ROOT%{_desktopdir}/kde4/%{name}.desktop
 
-%find_lang %{name} --with-kde
-%find_lang %{name}-core --with-kde
-cat %{name}-core.lang >> %{name}.lang
-%find_lang plasma_applet_smb4k-qml --with-kde
-cat plasma_applet_smb4k-qml.lang >> %{name}.lang
+%find_lang %{name} --with-kde --all-name
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/*.la $RPM_BUILD_ROOT%{_libdir}/lib{smb4kconfigdialog,smb4kcore}.so
 rm -rf $RPM_BUILD_ROOT%{_includedir}
