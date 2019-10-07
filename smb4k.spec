@@ -5,12 +5,13 @@ Summary:	SMB share browser
 Summary(pl.UTF-8):	Przeglądarka zasobów SMB
 Name:		smb4k
 Version:	3.0.2
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://downloads.sourceforge.net/smb4k/%{name}-%{version}.tar.xz
 # Source0-md5:	12ea7b57edec04e74276ecc7a37801f5
 URL:		http://smb4k.sf.net
+BuildRequires:  Qt5Concurrent-devel
 BuildRequires:	QtCore-devel
 BuildRequires:	QtDBus-devel
 BuildRequires:	QtGui-devel
@@ -18,9 +19,24 @@ BuildRequires:	QtNetwork-devel
 BuildRequires:	QtSvg-devel
 BuildRequires:	automoc4
 BuildRequires:	cmake
-BuildRequires:	docbook-dtd42-xml
+BuildRequires:	docbook-dtd45-xml
 BuildRequires:	gettext-tools
-BuildRequires:	kde4-kdelibs-devel
+BuildRequires:	kf5-extra-cmake-modules
+BuildRequires:	kf5-kauth-devel
+BuildRequires:	kf5-kcompletion-devel
+BuildRequires:	kf5-kconfig-devel
+BuildRequires:	kf5-kconfigwidgets-devel
+BuildRequires:	kf5-kcrash-devel
+BuildRequires:	kf5-kdbusaddons-devel
+BuildRequires:	kf5-kdoctools-devel
+BuildRequires:	kf5-ki18n-devel
+BuildRequires:	kf5-kiconthemes-devel
+BuildRequires:  kf5-kio-devel
+BuildRequires:	kf5-kjobwidgets-devel
+BuildRequires:	kf5-knotifications-devel
+BuildRequires:	kf5-kwallet-devel
+BuildRequires:	kf5-kwindowsystem-devel
+BuildRequires:	kf5-plasma-framework-devel
 BuildRequires:	libxml2-progs
 BuildRequires:	qt4-build
 BuildRequires:	qt4-qmake
