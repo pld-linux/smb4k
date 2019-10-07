@@ -12,11 +12,12 @@ Source0:	http://downloads.sourceforge.net/smb4k/%{name}-%{version}.tar.xz
 # Source0-md5:	12ea7b57edec04e74276ecc7a37801f5
 URL:		http://smb4k.sf.net
 BuildRequires:  Qt5Concurrent-devel
-BuildRequires:	QtCore-devel
-BuildRequires:	QtDBus-devel
-BuildRequires:	QtGui-devel
-BuildRequires:	QtNetwork-devel
-BuildRequires:	QtSvg-devel
+BuildRequires:	Qt5Core-devel
+BuildRequires:	Qt5DBus-devel
+BuildRequires:	Qt5Gui-devel
+BuildRequires:	Qt5Network-devel
+BuildRequires:	Qt5Svg-devel
+BuildRequires:	Qt5X11Extras-devel
 BuildRequires:	automoc4
 BuildRequires:	cmake
 BuildRequires:	docbook-dtd45-xml
