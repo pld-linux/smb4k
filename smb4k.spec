@@ -39,8 +39,8 @@ BuildRequires:	kf5-kwallet-devel
 BuildRequires:	kf5-kwindowsystem-devel
 BuildRequires:	kf5-plasma-framework-devel
 BuildRequires:	libxml2-progs
-BuildRequires:	qt4-build
-BuildRequires:	qt4-qmake
+BuildRequires:	qt5-build
+BuildRequires:	qt5-qmake
 BuildRequires:	rpmbuild(macros) >= 1.293
 Requires:	cups-backend-smb
 Requires:	samba-client
