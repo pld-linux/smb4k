@@ -5,7 +5,7 @@ Summary:	SMB share browser
 Summary(pl.UTF-8):	Przeglądarka zasobów SMB
 Name:		smb4k
 Version:	3.0.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://downloads.sourceforge.net/smb4k/%{name}-%{version}.tar.xz
@@ -40,6 +40,7 @@ BuildRequires:	kf5-kwindowsystem-devel
 BuildRequires:	kf5-plasma-framework-devel
 BuildRequires:	libsmbclient-devel
 BuildRequires:	libxml2-progs
+BuildRequires:	ninja
 BuildRequires:	qt5-build
 BuildRequires:	qt5-qmake
 BuildRequires:	rpmbuild(macros) >= 1.293
@@ -57,16 +58,19 @@ Przeglądarka zasobów SMB dla KDE.
 %setup -q
 
 %build
-mkdir -p build
+install -d build
 cd build
-%cmake ../
-%{__make}
+%cmake -G Ninja \
+	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
+	..
+%ninja_build
+
+%{?with_tests:%ninja_build test}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} -C build install \
-	DESTDIR=$RPM_BUILD_ROOT
+%ninja_install -C build
 
 #fixing desktop file
 %{__sed} -e "s@Categories=Qt;KDE;Utility;@Categories=Qt;KDE;Network;@g" -i $RPM_BUILD_ROOT%{_desktopdir}/org.kde.smb4k.desktop
@@ -88,7 +92,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/smb4k
 %attr(755,root,root) %{_libdir}/libsmb4kcore.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libsmb4kcore.so.6
-%attr(755,root,root) %{_libdir}/plugins/smb4kconfigdialog.so
 %attr(755,root,root) %{_libexecdir}/kauth/mounthelper
 %attr(755,root,root) %{_datadir}/kconf_update/*.sh
 %{_datadir}/kconf_update/*.upd
@@ -102,9 +105,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/*/*/*/*.png
 %{_desktopdir}/org.kde.smb4k.desktop
 # plasma applet - maybe could be put in external package?
-%attr(755,root,root) %{_libdir}/qml/org/kde/smb4k/smb4kqmlplugin/libsmb4kqmlplugin.so
-%{_libdir}/qml/org/kde/smb4k/smb4kqmlplugin/qmldir
+%attr(755,root,root) %{_libdir}/qt5/plugins/smb4kconfigdialog.so
+%dir %{_libdir}/qt5/qml/org/kde/smb4k
+%dir %{_libdir}/qt5/qml/org/kde/smb4k/smb4kqmlplugin
+%attr(755,root,root) %{_libdir}/qt5/qml/org/kde/smb4k/smb4kqmlplugin/libsmb4kqmlplugin.so
+%{_libdir}/qt5/qml/org/kde/smb4k/smb4kqmlplugin/qmldir
 %{_datadir}/knotifications5/smb4k.notifyrc
 %{_datadir}/kservices5/plasma-applet-org.kde.smb4kqml.desktop
+%dir %{_datadir}/kxmlgui5/smb4k
 %{_datadir}/kxmlgui5/smb4k/smb4k_shell.rc
 %{_datadir}/plasma/plasmoids/org.kde.smb4kqml
