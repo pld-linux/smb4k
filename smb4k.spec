@@ -4,12 +4,12 @@
 Summary:	SMB share browser
 Summary(pl.UTF-8):	Przeglądarka zasobów SMB
 Name:		smb4k
-Version:	3.0.2
-Release:	2
+Version:	3.1.0
+Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
-Source0:	http://downloads.sourceforge.net/smb4k/%{name}-%{version}.tar.xz
-# Source0-md5:	12ea7b57edec04e74276ecc7a37801f5
+Source0:	http://downloads.sourceforge.net/smb4k/Development/%{name}-%{version}.tar.xz
+# Source0-md5:	85e7c8432eece913086ab982c0555555
 URL:		http://smb4k.sf.net
 BuildRequires:	Qt5Concurrent-devel
 BuildRequires:	Qt5Core-devel
@@ -77,7 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %find_lang %{name} --with-kde --all-name
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/libsmb4kcore.so
+#%{__rm} $RPM_BUILD_ROOT%{_libdir}/libsmb4kcore.so
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -88,30 +88,52 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS BUGS ChangeLog README
-%{_docdir}/HTML/en
 %attr(755,root,root) %{_bindir}/smb4k
-%attr(755,root,root) %{_libdir}/libsmb4kcore.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libsmb4kcore.so.6
+%attr(755,root,root) %{_libdir}/libsmb4kcore.so
+#%attr(755,root,root) %ghost %{_libdir}/libsmb4kcore.so.6
+%attr(755,root,root) %{_libdir}/qt5/plugins/smb4kconfigdialog.so
+%dir %attr(755,root,root) %{_libdir}/qt5/qml/org/kde/smb4k
+%dir %attr(755,root,root) %{_libdir}/qt5/qml/org/kde/smb4k/smb4kqmlplugin
+%attr(755,root,root) %{_libdir}/qt5/qml/org/kde/smb4k/smb4kqmlplugin/libsmb4kqmlplugin.so
+%attr(755,root,root) %{_libdir}/qt5/qml/org/kde/smb4k/smb4kqmlplugin/qmldir
 %attr(755,root,root) %{_libexecdir}/kauth/mounthelper
-%attr(755,root,root) %{_datadir}/kconf_update/*.sh
-%{_datadir}/kconf_update/*.upd
+%{_desktopdir}/org.kde.smb4k.desktop
 %{_datadir}/dbus-1/system-services/org.kde.smb4k.mounthelper.service
 %{_datadir}/dbus-1/system.d/org.kde.smb4k.mounthelper.conf
-%{_datadir}/polkit-1/actions/org.kde.smb4k.mounthelper.policy
-#%{_datadir}/apps/smb4k
-%{_datadir}/config.kcfg/smb4k.kcfg
+%{_datadir}/kconf_update/*
+
 %{_datadir}/metainfo/org.kde.smb4k.appdata.xml
 %{_datadir}/metainfo/org.kde.smb4kqml.appdata.xml
-%{_iconsdir}/*/*/*/*.png
-%{_desktopdir}/org.kde.smb4k.desktop
-# plasma applet - maybe could be put in external package?
-%attr(755,root,root) %{_libdir}/qt5/plugins/smb4kconfigdialog.so
-%dir %{_libdir}/qt5/qml/org/kde/smb4k
-%dir %{_libdir}/qt5/qml/org/kde/smb4k/smb4kqmlplugin
-%attr(755,root,root) %{_libdir}/qt5/qml/org/kde/smb4k/smb4kqmlplugin/libsmb4kqmlplugin.so
-%{_libdir}/qt5/qml/org/kde/smb4k/smb4kqmlplugin/qmldir
+
+%{_docdir}/HTML/*/smb4k
+
 %{_datadir}/knotifications5/smb4k.notifyrc
-%{_datadir}/kservices5/plasma-applet-org.kde.smb4kqml.desktop
+#%{_datadir}/kservices5/plasma-applet-org.kde.smb4kqml.desktop
+%dir %{_datadir}/kxmlgui5
 %dir %{_datadir}/kxmlgui5/smb4k
 %{_datadir}/kxmlgui5/smb4k/smb4k_shell.rc
-%{_datadir}/plasma/plasmoids/org.kde.smb4kqml
+        
+%{_datadir}/config.kcfg/smb4k.kcfg
+%{_iconsdir}/*/*/*/*.png
+
+%dir %{_datadir}/plasma/plasmoids/org.kde.smb4kqml
+%dir %{_datadir}/plasma/plasmoids/org.kde.smb4kqml/contents
+%dir %{_datadir}/plasma/plasmoids/org.kde.smb4kqml/contents/config
+%{_datadir}/plasma/plasmoids/org.kde.smb4kqml/contents/config/main.xml
+%dir %{_datadir}/plasma/plasmoids/org.kde.smb4kqml/contents/ui
+%{_datadir}/plasma/plasmoids/org.kde.smb4kqml/contents/ui/BookmarkItemDelegate.qml
+%{_datadir}/plasma/plasmoids/org.kde.smb4kqml/contents/ui/BookmarksPage.qml
+%{_datadir}/plasma/plasmoids/org.kde.smb4kqml/contents/ui/ConfigurationPage.qml
+%{_datadir}/plasma/plasmoids/org.kde.smb4kqml/contents/ui/NetworkBrowserItemDelegate.qml
+%{_datadir}/plasma/plasmoids/org.kde.smb4kqml/contents/ui/NetworkBrowserPage.qml
+%{_datadir}/plasma/plasmoids/org.kde.smb4kqml/contents/ui/PanelIconWidget.qml
+%{_datadir}/plasma/plasmoids/org.kde.smb4kqml/contents/ui/PopupDialog.qml
+%{_datadir}/plasma/plasmoids/org.kde.smb4kqml/contents/ui/ProfileItemDelegate.qml
+%{_datadir}/plasma/plasmoids/org.kde.smb4kqml/contents/ui/ProfilesPage.qml
+%{_datadir}/plasma/plasmoids/org.kde.smb4kqml/contents/ui/SharesViewItemDelegate.qml
+%{_datadir}/plasma/plasmoids/org.kde.smb4kqml/contents/ui/SharesViewPage.qml
+%{_datadir}/plasma/plasmoids/org.kde.smb4kqml/contents/ui/main.qml
+%{_datadir}/plasma/plasmoids/org.kde.smb4kqml/metadata.desktop
+%{_datadir}/plasma/plasmoids/org.kde.smb4kqml/metadata.json
+
+%{_datadir}/polkit-1/actions/org.kde.smb4k.mounthelper.policy
