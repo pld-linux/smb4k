@@ -4,12 +4,12 @@
 Summary:	SMB share browser
 Summary(pl.UTF-8):	Przeglądarka zasobów SMB
 Name:		smb4k
-Version:	4.0.3
+Version:	4.0.4
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://downloads.sourceforge.net/smb4k/Development/%{name}-%{version}.tar.xz
-# Source0-md5:	5c426e1b1ae58f6dbc7a18da59440c2b
+# Source0-md5:	6d2e145b2e86f9d4e7d8e92439bcd045
 URL:		http://smb4k.sf.net
 BuildRequires:	Qt6Concurrent-devel
 BuildRequires:	Qt6Core-devel
@@ -79,6 +79,8 @@ rm -rf $RPM_BUILD_ROOT
 #fixing desktop file
 %{__sed} -e "s@Categories=Qt;KDE;Utility;@Categories=Qt;KDE;Network;@g" -i $RPM_BUILD_ROOT%{_desktopdir}/org.kde.smb4k.desktop
 
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ie
+
 %find_lang %{name} --with-kde --all-name
 
 #%{__rm} $RPM_BUILD_ROOT%{_libdir}/libsmb4kcore.so
@@ -93,13 +95,13 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS BUGS ChangeLog
 %attr(755,root,root) %{_bindir}/smb4k
-%attr(755,root,root) %{_libdir}/libsmb4kcore.so
-%attr(755,root,root) %{_libdir}/libsmb4kdialogs.so
+%{_libdir}/libsmb4kcore.so
+%{_libdir}/libsmb4kdialogs.so
 #%attr(755,root,root) %ghost %{_libdir}/libsmb4kcore.so.6
-%attr(755,root,root) %{_libdir}/qt6/plugins/smb4kconfigdialog.so
-%dir %attr(755,root,root) %{_libdir}/qt6/qml/org/kde/smb4k
-%dir %attr(755,root,root) %{_libdir}/qt6/qml/org/kde/smb4k/smb4kqmlplugin
-%attr(755,root,root) %{_libdir}/qt6/qml/org/kde/smb4k/smb4kqmlplugin/libsmb4kqmlplugin.so
+%{_libdir}/qt6/plugins/smb4kconfigdialog.so
+%dir %{_libdir}/qt6/qml/org/kde/smb4k
+%dir %{_libdir}/qt6/qml/org/kde/smb4k/smb4kqmlplugin
+%{_libdir}/qt6/qml/org/kde/smb4k/smb4kqmlplugin/libsmb4kqmlplugin.so
 %attr(755,root,root) %{_libdir}/qt6/qml/org/kde/smb4k/smb4kqmlplugin/qmldir
 %attr(755,root,root) %{_libexecdir}/kf6/kauth/mounthelper
 %{_desktopdir}/org.kde.smb4k.desktop
@@ -113,7 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_docdir}/HTML/*/smb4k
 
 %{_datadir}/knotifications6/smb4k.notifyrc
-        
+
 %{_datadir}/config.kcfg/smb4k.kcfg
 %{_iconsdir}/*/*/*/*.png
 
