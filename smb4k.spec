@@ -4,12 +4,12 @@
 Summary:	SMB share browser
 Summary(pl.UTF-8):	Przeglądarka zasobów SMB
 Name:		smb4k
-Version:	4.0.4
+Version:	4.0.6
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://downloads.sourceforge.net/smb4k/Development/%{name}-%{version}.tar.xz
-# Source0-md5:	6d2e145b2e86f9d4e7d8e92439bcd045
+# Source0-md5:	dd645c9c9222c8f17eddbf81263cae13
 URL:		http://smb4k.sf.net
 BuildRequires:	Qt6Concurrent-devel
 BuildRequires:	Qt6Core-devel
@@ -19,7 +19,6 @@ BuildRequires:	Qt6Keychain-devel
 BuildRequires:	Qt6Network-devel
 BuildRequires:	Qt6PrintSupport-devel
 BuildRequires:	Qt6Svg-devel
-BuildRequires:	automoc4
 BuildRequires:	cmake
 BuildRequires:	docbook-dtd45-xml
 BuildRequires:	gettext-tools
@@ -36,6 +35,7 @@ BuildRequires:	kf6-kguiaddons-devel
 BuildRequires:	kf6-ki18n-devel
 BuildRequires:	kf6-kiconthemes-devel
 BuildRequires:	kf6-kio-devel
+BuildRequires:	kf6-kirigami-devel
 BuildRequires:	kf6-kjobwidgets-devel
 BuildRequires:	kf6-knotifications-devel
 BuildRequires:	kf6-kstatusnotifieritem-devel
